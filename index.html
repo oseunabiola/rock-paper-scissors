@@ -3,81 +3,47 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="dist/css/style.css" />
     <title>Rock Paper Scissors</title>
   </head>
   <body>
-    <script>
-      const PAPER = "paper";
-      const ROCK = "rock";
-      const SCISSORS = "scissors";
+    <main class="container flex flex-fd-c flex-ai-c">
+      <div class="results flex flex-fd-c flex-jc-c flex-ai-c">
+        <div
+          class="overall flex flex-jc-sb flex-ai-c padding-tb-s padding-lr-s margin-tb-xl"
+        >
+          <div class="you flex flex-fd-c flex-ai-c">
+            <div id="youScore" class="you__score flex flex-jc-c flex-ai-c">
+              0
+            </div>
+            YOU
+          </div>
+          <div>VS</div>
 
-      function computerPlay() {
-        let cards = [ROCK, PAPER, SCISSORS];
-        let randomIndex = Math.floor(Math.random() * cards.length);
-        return cards[randomIndex];
-      }
-      function playRound(playerSelection, computerSelection) {
-        playerSelection = playerSelection.toLowerCase();
-
-        // console.log("computer selection is", computerSelection);
-        // console.log("Player selection is", playerSelection);
-
-        // [beats, beaten by]
-        let paperWeight = [ROCK, SCISSORS];
-        let rockWeight = [SCISSORS, PAPER];
-        let scissorsWeight = [PAPER, ROCK];
-
-        let result;
-        switch (computerSelection) {
-          case PAPER:
-            if (playerSelection === PAPER) {
-              result = "Draw! Computer chose paper too";
-            } else if (playerSelection === ROCK) {
-              result = "You Lose! Paper beats Rock";
-            } else {
-              result = "You Won! Scissors beats Paper";
-            }
-            break;
-          case ROCK:
-            if (playerSelection === ROCK) {
-              result = "Draw! Computer chose rock too";
-            } else if (playerSelection === SCISSORS) {
-              result = "You Lose! Rock beats Scissors";
-            } else {
-              result = "You Won! Paper beats Rock";
-            }
-            break;
-          case SCISSORS:
-            if (playerSelection === SCISSORS) {
-              result = "Draw! Computer chose scissors too";
-            } else if (playerSelection === PAPER) {
-              result = "You Lose! Scissors beats Paper";
-            } else {
-              result = "You Won! Rock beats Scissors";
-            }
-            break;
-
-          default:
-            break;
-        }
-        return result;
-      }
-
-      function game() {
-        let gameRounds = 5;
-        let playerWin = 0;
-        computerWin = 0;
-        for (i = 0; i <= gameRounds; i++) {
-          let playerSelection = prompt("Your Selection? ");
-          let computerSelection = computerPlay();
-          let result = playRound(playerSelection, computerSelection);
-          console.log(result);
-          result.startsWith("You Won") ? playerWin++ : computerWin++;
-        }
-
-        return playerWin > computerWin ? "You Won!" : "You Lose!";
-      }
-      console.log(game());
-    </script>
+          <div class="comp flex flex-fd-c flex-ai-c">
+            <div id="compScore" class="comp__score flex flex-jc-c flex-ai-c">
+              0
+            </div>
+            COMP
+          </div>
+        </div>
+        <div class="start-round" id="statusMessage">LET'S PLAY!</div>
+      </div>
+      <div class="objects flex flex-jc-c flex-ai-c margin-tb-l padding-lr-r">
+        <div class="flex flex-jc-c flex-ai-c start-modal" id="startModal">
+          <button class="btn" id="startGame">Start</button>
+        </div>
+        <div class="object flex flex-jc-c flex-ai-c" data-object="rock">
+          Rock
+        </div>
+        <div class="object flex flex-jc-c flex-ai-c" data-object="paper">
+          Paper
+        </div>
+        <div class="object flex flex-jc-c flex-ai-c" data-object="scissors">
+          Scissors
+        </div>
+      </div>
+    </main>
+    <script src="game.js"></script>
   </body>
 </html>
