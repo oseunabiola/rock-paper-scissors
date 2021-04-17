@@ -75,7 +75,8 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function computeScore(result) {
-  result.startsWith("You Won") ? playerWin++ : computerWin++;
+  if (result.startsWith("You Won")) playerWin++;
+  if (result.startsWith("You Lose")) computerWin++;
   updateScore();
   return;
 }
